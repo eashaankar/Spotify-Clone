@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:music_player/player.dart';
+import 'package:we_slide/we_slide.dart';
 
 class MiniPlayer extends StatefulWidget {
   MiniPlayer({Key? key, required this.onTap}) : super(key: key);
@@ -10,6 +12,7 @@ class MiniPlayer extends StatefulWidget {
 class _MiniPlayerState extends State<MiniPlayer> {
   @override
   Widget build(BuildContext context) {
+    final WeSlideController _controller = WeSlideController();
     final colorTheme = Theme.of(context).colorScheme;
     return Container(
       color: colorTheme.onBackground,
@@ -21,17 +24,18 @@ class _MiniPlayerState extends State<MiniPlayer> {
             Row(
               children: [
                 GestureDetector(
-                  onTap: () => widget.onTap(),
-                  // onTap: () {
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(builder: (context) => Player()),
-                  //   );
-                  // },
+                  //onTap: () => widget.onTap(),
+                   onTap: () {
+                     Navigator.push(
+                       context,
+                       MaterialPageRoute(builder: (context) => Player(onTap: _controller.show)),
+                     );
+                     print('Tapped');
+                   },
                   child: Container(
                     width: 70,
                     height: 70,
-                    child: Image.asset("assets/thumb/XVztg3oXmX4.jpg",
+                    child: Image.asset("assets/images/shimmer.jpg",
                         fit: BoxFit.cover),
                   ),
                 ),

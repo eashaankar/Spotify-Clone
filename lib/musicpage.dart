@@ -28,9 +28,6 @@ class _MusicPage extends State<MusicPage>{
         panel: Player(onTap: _controller.hide),
         //footer: BottomBar(),
       ),
-      appBar: AppBar(
-        title: Text('Music Player'),
-      ),
     );
 
   }

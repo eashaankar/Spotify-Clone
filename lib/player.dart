@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:music_player/home.dart';
+import 'package:music_player/musicpage.dart';
+import 'package:we_slide/we_slide.dart';
 
 class Player extends StatefulWidget {
   final Function onTap;
@@ -12,6 +15,7 @@ class Player extends StatefulWidget {
 class _PlayerState extends State<Player> {
   @override
   Widget build(BuildContext context) {
+    final WeSlideController _controller = WeSlideController();
     final textTheme = Theme.of(context).textTheme;
     final cardSize = MediaQuery.of(context).size.height * 0.4;
     return Material(
@@ -55,7 +59,16 @@ class _PlayerState extends State<Player> {
                               child: Row(
                                 children: <Widget>[
                                   IconButton(
-                                    onPressed: () => widget.onTap(),
+                                    //onPressed: () => widget.onTap(),
+                                    onPressed: (){
+                                      setState(() {
+                                        //Navigator.pop(context);
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => MusicPage()),
+                                        );
+                                      });
+                                    },
                                     iconSize: 32,
                                     icon: Icon(
                                       Icons.arrow_drop_down,
@@ -89,7 +102,7 @@ class _PlayerState extends State<Player> {
                                 height: cardSize,
                                 width: cardSize,
                                 child:
-                                Image.asset("assets/thumb/XVztg3oXmX4.jpg"),
+                                Image.asset("assets/images/shimmer.jpg"),
                               ),
                             ),
                             // Music info
