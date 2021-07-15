@@ -46,7 +46,7 @@ class _MiniPlayerState extends State<MiniPlayer> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text('Wurkit (Original Mix)',
-                          style: TextStyle(color: colorTheme.onPrimary),
+                          style: TextStyle(color: Colors.green),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis),
                       SizedBox(width: 8, height: 8),

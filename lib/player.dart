@@ -1,7 +1,11 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/home.dart';
 import 'package:music_player/musicpage.dart';
 import 'package:we_slide/we_slide.dart';
+import 'package:audioplayers/audio_cache.dart';
+
+typedef void OnError(Exception exception);
 
 class Player extends StatefulWidget {
   final Function onTap;
@@ -12,7 +16,12 @@ class Player extends StatefulWidget {
   _PlayerState createState() => _PlayerState();
 }
 
+AudioPlayer advancedPlayer = new AudioPlayer();
+AudioCache audioCache = new AudioCache(fixedPlayer: advancedPlayer);
+late String localFilePath;
+
 class _PlayerState extends State<Player> {
+  bool _isPause = true;
   @override
   Widget build(BuildContext context) {
     final WeSlideController _controller = WeSlideController();
@@ -202,14 +211,22 @@ class _PlayerState extends State<Player> {
                                 icon: Icon(Icons.skip_previous,
                                     color: Colors.white),
                               ),
-                              MaterialButton(
-                                onPressed: () {},
+                              IconButton(
                                 color: Colors.white,
-                                textColor: Color(0xFF0B1220),
-                                child: Icon(Icons.pause, size: 32),
-                                padding: EdgeInsets.all(16),
-                                shape: CircleBorder(),
-                                elevation: 0.0,
+                                //textColor: Color(0xFF0B1220),
+                                    //onPressed: () => audioCache.play('THYKIER - Shimmer.mp3'),
+                                onPressed: (){
+                                  setState(() {
+                                    if(_isPause){
+                                      _isPause = false;
+                                      audioCache.play('THYKIER - Shimmer.mp3');
+                                    }else{
+                                      _isPause = true;
+                                      advancedPlayer.pause();
+                                    }
+                                  });
+                                },
+                                    icon: Icon(_isPause ? Icons.play_arrow : Icons.pause),
                               ),
                               IconButton(
                                 iconSize: 32,
