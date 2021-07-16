@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:music_player/player.dart';
 import 'package:we_slide/we_slide.dart';
+import 'globals.dart' as globals;
 
 class MiniPlayer extends StatefulWidget {
   MiniPlayer({Key? key, required this.onTap}) : super(key: key);
@@ -15,7 +16,7 @@ class _MiniPlayerState extends State<MiniPlayer> {
     final WeSlideController _controller = WeSlideController();
     final colorTheme = Theme.of(context).colorScheme;
     return Container(
-      color: colorTheme.onBackground,
+      color: Colors.white60,
       child: AnimatedContainer(
         duration: Duration(milliseconds: 200),
         height: 71.0,
@@ -52,7 +53,7 @@ class _MiniPlayerState extends State<MiniPlayer> {
                       SizedBox(width: 8, height: 8),
                       Text('Kyle Watson',
                           style: TextStyle(
-                              color: colorTheme.onPrimary.withOpacity(0.5),
+                              color: Colors.green,
                               fontSize: 12),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis),
@@ -60,17 +61,25 @@ class _MiniPlayerState extends State<MiniPlayer> {
                   ),
                 ),
                 SizedBox(width: 20),
-                Icon(Icons.favorite_border, color: colorTheme.onPrimary),
-                SizedBox(width: 20),
                 GestureDetector(
-                  onTap: () {},
-                  child: Icon(Icons.play_arrow,
-                      color: colorTheme.onPrimary, size: 30),
+                  onTap: () {
+                    setState(() {
+                      if(globals.isPause){
+                        globals.isPause = false;
+                        globals.audioCache.play('THYKIER - Shimmer.mp3');
+                      }else{
+                        globals.isPause = true;
+                        globals.advancedPlayer.pause();
+                      }
+                    });
+                  },
+                  child: Icon(globals.isPause ? Icons.play_arrow : Icons.pause,
+                      color: Colors.black, size: 30),
                 ),
                 SizedBox(width: 20),
               ],
             ),
-            Divider(color: colorTheme.background, height: 1),
+            Divider(color: Colors.black, height: 1),
           ],
         ),
       ),

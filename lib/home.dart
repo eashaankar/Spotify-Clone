@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:music_player/player.dart';
 import 'package:music_player/musicpage.dart';
 import 'package:we_slide/we_slide.dart';
-import 'package:music_player/function.dart';
 import 'globals.dart' as globals;
 
 class Home extends StatefulWidget {
@@ -40,7 +39,8 @@ class _HomeState extends State<Home> {
                     MaterialPageRoute(builder: (context) => Player(onTap: _controller.show)),
                   );
                   globals.isPause = false;
-                  audioCache.play('THYKIER - Shimmer.mp3');
+                  globals.audioCache.play('THYKIER - Shimmer.mp3');
+                  globals.flag = 1;
                   print("tapped");
                 },
                 child: Column(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:music_player/home.dart';
 import 'package:music_player/musicpage.dart';
 import 'package:we_slide/we_slide.dart';
-import 'package:music_player/function.dart';
 import 'globals.dart' as globals;
 
 typedef void OnError(Exception exception);
@@ -17,7 +16,9 @@ class Player extends StatefulWidget {
 }
 
 class _PlayerState extends State<Player> {
+
   @override
+
   Widget build(BuildContext context) {
     final WeSlideController _controller = WeSlideController();
     final textTheme = Theme.of(context).textTheme;
@@ -76,25 +77,6 @@ class _PlayerState extends State<Player> {
                                     iconSize: 32,
                                     icon: Icon(
                                       Icons.arrow_drop_down,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      children: <Widget>[
-                                        Text(
-                                          "PLAYING NOW",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: textTheme.bodyText1!
-                                              .apply(color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.more_horiz,
                                       color: Colors.white,
                                     ),
                                   ),
@@ -158,14 +140,20 @@ class _PlayerState extends State<Player> {
                             thumbShape:
                             RoundSliderThumbShape(enabledThumbRadius: 6),
                           ),
-                          child: Slider(
-                            inactiveColor: Colors.white.withOpacity(0.1),
-                            activeColor: Colors.white,
-                            value: 0.5,
-                            min: 0.0,
-                            max: 100.0,
-                            onChanged: (double value) {},
-                          ),
+                            child: Slider(
+                              inactiveColor: Colors.white.withOpacity(0.1),
+                              activeColor: Colors.white,
+                                value: globals.position.inSeconds.toDouble(),
+                                min: 0.0,
+                                max: globals.duration.inSeconds.toDouble(),
+                                onChanged: (double value) {
+                                  setState(() {
+                                    globals.seekToSecond(value.toInt());
+                                    value = value;
+                                  }
+                                  );
+                              }
+                              ),
                         ),
                         //SizedBox(height: 5),
                         Padding(
@@ -214,10 +202,10 @@ class _PlayerState extends State<Player> {
                                   setState(() {
                                     if(globals.isPause){
                                       globals.isPause = false;
-                                      audioCache.play('THYKIER - Shimmer.mp3');
+                                      globals.audioCache.play('THYKIER - Shimmer.mp3');
                                     }else{
                                       globals.isPause = true;
-                                      advancedPlayer.pause();
+                                      globals.advancedPlayer.pause();
                                     }
                                   });
                                 },
