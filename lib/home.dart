@@ -1,9 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/player.dart';
-import 'package:music_player/musicpage.dart';
 import 'package:we_slide/we_slide.dart';
 import 'globals.dart' as globals;
+import 'package:http/http.dart' as http;
+
+void main() async {
+  String url = "assets/musiclist.json";
+  final response = await http.get(Uri.parse(url));
+  print(response.body);
+}
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
