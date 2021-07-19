@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Shimmer",
+    "artist": "THYKIER",
+    "img": "assets/images/shimmer.jpg",
+    "audio": "assets/THYKIER - Shimmer.mp3"
+  },
+  {
+    "name": "Cetus",
+    "artist": "Lensko",
+    "img": "assets/images/cetus.jpg",
+    "audio": "assets/Lensko - Cetus.mp3"
+  }
+]
