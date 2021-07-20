@@ -83,11 +83,8 @@ class _PlayerState extends State<Player> {
                                     //onPressed: () => widget.onTap(),
                                     onPressed: (){
                                       setState(() {
+                                        advancedPlayer.stop();
                                         Navigator.pop(context);
-                                        /*Navigator.push(
-                                          context,
-                                          MaterialPageRoute(builder: (context) => MusicPage()),
-                                        );*/
                                       });
                                     },
                                     iconSize: 32,
@@ -137,7 +134,7 @@ class _PlayerState extends State<Player> {
                                                   .withOpacity(0.5)),
                                         ),
                                         SizedBox(height: 5),
-                                        AudioFile(advancedPlayer: advancedPlayer),
+                                        AudioFile(advancedPlayer: advancedPlayer, audioPath: this.widget.songsData[this.widget.index]["audio"],),
                                       ],
                                     ),
                                   ),

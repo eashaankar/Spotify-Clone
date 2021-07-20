@@ -1,7 +1,10 @@
+// @dart=2.9
 import 'dart:convert';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:music_player/audio_file.dart';
 import 'package:music_player/miniplayer.dart';
 import 'package:music_player/player.dart';
 import 'package:we_slide/we_slide.dart';
@@ -9,13 +12,15 @@ import 'package:we_slide/we_slide.dart';
 class Home extends StatefulWidget {
 
 
-  Home({Key? key}) : super(key: key);
+  Home({Key key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+
+
   List songs = [];
 
   ReadData() async{
@@ -49,6 +54,7 @@ class _HomeState extends State<Home> {
                 MiniPlayer(onTap: _controller.show, songsData: songs, index: i);
                 Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Player(onTap: _controller.show,songsData: songs,index: i)),
+
                 );
                 //globals.isPause = false;
                 //globals.advancedPlayer.play(songs[i]["audio"]);

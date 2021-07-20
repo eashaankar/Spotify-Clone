@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 class AudioFile extends StatefulWidget {
   final AudioPlayer advancedPlayer;
-  const AudioFile({Key key, this.advancedPlayer}) : super(key: key);
+  final String audioPath;
+  const AudioFile({Key key, this.advancedPlayer, this.audioPath}) : super(key: key);
 
   @override
   _AudioFileState createState() => _AudioFileState();
@@ -14,7 +15,7 @@ class AudioFile extends StatefulWidget {
 class _AudioFileState extends State<AudioFile> {
   Duration _duration = new Duration();
   Duration _position = new Duration();
-  final String path = "https://filesamples.com/samples/audio/mp3/sample2.mp3";
+  //final String path = "https://filesamples.com/samples/audio/mp3/sample2.mp3";
   bool isPlaying = false;
   bool isPaused = false;
   bool isRepeat = false;
@@ -34,7 +35,7 @@ class _AudioFileState extends State<AudioFile> {
       });
     });
 
-    this.widget.advancedPlayer.setUrl(path);
+    this.widget.advancedPlayer.setUrl(this.widget.audioPath);
     this.widget.advancedPlayer.onPlayerCompletion.listen((event) {
       setState(() {
         _position = Duration(seconds: 0);
@@ -56,7 +57,7 @@ class _AudioFileState extends State<AudioFile> {
       onPressed: () {
         if (isPlaying == false) {
           print('tapped');
-          this.widget.advancedPlayer.play(path);
+          this.widget.advancedPlayer.play(this.widget.audioPath);
           setState(() {
             isPlaying = true;
           });
