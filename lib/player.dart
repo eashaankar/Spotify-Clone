@@ -1,21 +1,37 @@
+// @dart=2.9
+import 'dart:io';
+
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:music_player/audio_file.dart';
 import 'package:music_player/home.dart';
 import 'package:music_player/musicpage.dart';
 import 'package:we_slide/we_slide.dart';
-import 'globals.dart' as globals;
 
-typedef void OnError(Exception exception);
+//typedef void OnError(Exception exception);
 
 class Player extends StatefulWidget {
-  final Function onTap;
 
-  Player({required this.onTap});
+  final Function onTap;
+  final songsData;
+  final int index;
+  Player({this.onTap, this.songsData, this.index});
 
   @override
   _PlayerState createState() => _PlayerState();
 }
 
+
+
 class _PlayerState extends State<Player> {
+
+  AudioPlayer advancedPlayer;
+
+  @override
+  void initState() {
+    super.initState();
+    advancedPlayer = AudioPlayer();
+  }
 
   @override
 
@@ -67,11 +83,8 @@ class _PlayerState extends State<Player> {
                                     //onPressed: () => widget.onTap(),
                                     onPressed: (){
                                       setState(() {
-                                        //Navigator.pop(context);
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(builder: (context) => MusicPage()),
-                                        );
+                                        advancedPlayer.stop();
+                                        Navigator.pop(context);
                                       });
                                     },
                                     iconSize: 32,
@@ -83,12 +96,13 @@ class _PlayerState extends State<Player> {
                                 ],
                               ),
                             ),
+                            SizedBox(height: 60),
                             Expanded(
                               child: Container(
                                 height: cardSize,
                                 width: cardSize,
                                 child:
-                                Image.asset("assets/images/shimmer.jpg"),
+                                Image.asset(this.widget.songsData[this.widget.index]["img"]),
                               ),
                             ),
                             // Music info
@@ -103,22 +117,24 @@ class _PlayerState extends State<Player> {
                                       CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(
-                                          "Wurkit (Original Mix)",
+                                          this.widget.songsData[this.widget.index]["name"],
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
-                                          style: textTheme.headline5!.apply(
+                                          style: textTheme.headline5.apply(
                                             color: Colors.white,
                                           ),
                                         ),
                                         SizedBox(height: 5),
                                         Text(
-                                          "Kyle Watson",
+                                          this.widget.songsData[this.widget.index]["artist"],
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
-                                          style: textTheme.headline6!.apply(
+                                          style: textTheme.headline6.apply(
                                               color: Colors.white
                                                   .withOpacity(0.5)),
                                         ),
+                                        SizedBox(height: 5),
+                                        AudioFile(advancedPlayer: advancedPlayer, audioPath: this.widget.songsData[this.widget.index]["audio"],),
                                       ],
                                     ),
                                   ),
@@ -130,109 +146,7 @@ class _PlayerState extends State<Player> {
                       ],
                     ),
                   ),
-                  Container(
-                    height: 150,
-                    child: Column(
-                      children: <Widget>[
-                        SliderTheme(
-                          data: SliderThemeData(
-                            trackHeight: 3,
-                            thumbShape:
-                            RoundSliderThumbShape(enabledThumbRadius: 6),
-                          ),
-                            child: Slider(
-                              inactiveColor: Colors.white.withOpacity(0.1),
-                              activeColor: Colors.white,
-                                value: globals.position.inSeconds.toDouble(),
-                                min: 0.0,
-                                max: globals.duration.inSeconds.toDouble(),
-                                onChanged: (double value) {
-                                  setState(() {
-                                    globals.seekToSecond(value.toInt());
-                                    value = value;
-                                  }
-                                  );
-                              }
-                              ),
-                        ),
-                        //SizedBox(height: 5),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                "00:35",
-                                style: textTheme.bodyText2!.apply(
-                                    color: Colors.white.withOpacity(0.7)),
-                              ),
-                              Text(
-                                "-02:05",
-                                style: textTheme.bodyText2!.apply(
-                                    color: Colors.white.withOpacity(0.7)),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              IconButton(
-                                highlightColor: Colors.transparent,
-                                splashColor: Colors.transparent,
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.repeat,
-                                  color: Colors.white.withOpacity(0.4),
-                                ),
-                              ),
-                              IconButton(
-                                iconSize: 32,
-                                onPressed: () {},
-                                icon: Icon(Icons.skip_previous,
-                                    color: Colors.white),
-                              ),
-                              IconButton(
-                                color: Colors.white,
-                                //textColor: Color(0xFF0B1220),
-                                    //onPressed: () => audioCache.play('THYKIER - Shimmer.mp3'),
-                                onPressed: (){
-                                  setState(() {
-                                    if(globals.isPause){
-                                      globals.isPause = false;
-                                      globals.audioCache.play('THYKIER - Shimmer.mp3');
-                                    }else{
-                                      globals.isPause = true;
-                                      globals.advancedPlayer.pause();
-                                    }
-                                  });
-                                },
-                                    icon: Icon(globals.isPause ? Icons.play_arrow : Icons.pause),
-                              ),
-                              IconButton(
-                                iconSize: 32,
-                                onPressed: () {},
-                                icon:
-                                Icon(Icons.skip_next, color: Colors.white),
-                              ),
-                              IconButton(
-                                highlightColor: Colors.transparent,
-                                splashColor: Colors.transparent,
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.shuffle,
-                                  color: Colors.white.withOpacity(
-                                      0.4), //Theme.of(context).accentColor.withOpacity(0.4),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+
                 ],
               ),
             ),
