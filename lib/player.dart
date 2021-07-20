@@ -99,6 +99,7 @@ class _PlayerState extends State<Player> {
                                 ],
                               ),
                             ),
+                            SizedBox(height: 60),
                             Expanded(
                               child: Container(
                                 height: cardSize,

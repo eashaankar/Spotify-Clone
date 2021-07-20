@@ -1,14 +1,26 @@
 [
   {
-    "name": "Shimmer",
-    "artist": "THYKIER",
-    "img": "assets/images/shimmer.jpg",
-    "audio": "assets/THYKIER - Shimmer.mp3"
+    "name": "Sample 1",
+    "artist": "Artist 1",
+    "img": "assets/images/Sample1.png",
+    "audio": "https://filesamples.com/samples/audio/mp3/sample1.mp3"
   },
   {
-    "name": "Cetus",
-    "artist": "Lensko",
-    "img": "assets/images/cetus.jpg",
-    "audio": "assets/Lensko - Cetus.mp3"
+    "name": "Sample 2",
+    "artist": "Artist 2",
+    "img": "assets/images/Sample2.png",
+    "audio": "https://filesamples.com/samples/audio/mp3/sample2.mp3"
+  },
+  {
+    "name": "Sample 3",
+    "artist": "Artist 3",
+    "img": "assets/images/Sample3.png",
+    "audio": "https://filesamples.com/samples/audio/mp3/sample3.mp3"
+  },
+  {
+    "name": "Sample 4",
+    "artist": "Artist 4",
+    "img": "assets/images/Sample4.png",
+    "audio": "https://filesamples.com/samples/audio/mp3/sample4.mp3"
   }
 ]

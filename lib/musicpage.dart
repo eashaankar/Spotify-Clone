@@ -49,8 +49,7 @@ class _MusicPage extends State<MusicPage>{
             overlayOpacity: 0.9,
             overlay: true,
             body: Home(),
-            //panelHeader: MiniPlayer(
-                //onTap: _controller.show, songsData: songs, index: i),
+            panelHeader: MiniPlayer(onTap: _controller.show, songsData: songs, index: i),
             panel: Player(onTap: _controller.hide, songsData: songs, index: i),
             //footer: BottomBar(),
           );
