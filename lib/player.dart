@@ -1,14 +1,11 @@
 // @dart=2.9
-import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/audio_file.dart';
-import 'package:music_player/home.dart';
-import 'package:music_player/musicpage.dart';
 import 'package:we_slide/we_slide.dart';
 
-//typedef void OnError(Exception exception);
+typedef void OnError(Exception exception);
 
 class Player extends StatefulWidget {
 
@@ -20,8 +17,6 @@ class Player extends StatefulWidget {
   @override
   _PlayerState createState() => _PlayerState();
 }
-
-
 
 class _PlayerState extends State<Player> {
 
@@ -36,9 +31,8 @@ class _PlayerState extends State<Player> {
   @override
 
   Widget build(BuildContext context) {
-    final WeSlideController _controller = WeSlideController();
     final textTheme = Theme.of(context).textTheme;
-    final cardSize = MediaQuery.of(context).size.height * 0.4;
+    final cardSize = MediaQuery.of(context).size;
     return Material(
       child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
@@ -46,6 +40,8 @@ class _PlayerState extends State<Player> {
           children: <Widget>[
             Container(
               height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.all(20),
               color: Color(0xFF57D780),
             ),
             Container(
@@ -66,7 +62,8 @@ class _PlayerState extends State<Player> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    height: MediaQuery.of(context).size.height - 150,
+                    //height: MediaQuery.of(context).size.height - 150,
+                    height: MediaQuery.of(context).size.height,
                     child: Stack(
                       children: <Widget>[
                         Column(
@@ -89,20 +86,21 @@ class _PlayerState extends State<Player> {
                                     },
                                     iconSize: 32,
                                     icon: Icon(
-                                      Icons.arrow_drop_down,
+                                      Icons.arrow_downward,
                                       color: Colors.white,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            SizedBox(height: 60),
+                            SizedBox(height: 10),
                             Expanded(
                               child: Container(
-                                height: cardSize,
-                                width: cardSize,
+                                //height: cardSize(),
+                                //width: cardSize,
+                                margin: EdgeInsets.all(30),
                                 child:
-                                Image.asset(this.widget.songsData[this.widget.index]["img"]),
+                                Image.asset(this.widget.songsData[this.widget.index]["img"], fit: BoxFit.fitWidth),
                               ),
                             ),
                             // Music info
@@ -133,7 +131,7 @@ class _PlayerState extends State<Player> {
                                               color: Colors.white
                                                   .withOpacity(0.5)),
                                         ),
-                                        SizedBox(height: 5),
+                                        SizedBox(height: 20),
                                         AudioFile(advancedPlayer: advancedPlayer, audioPath: this.widget.songsData[this.widget.index]["audio"],),
                                       ],
                                     ),

@@ -50,10 +50,11 @@ class _AudioFileState extends State<AudioFile> {
   }
 
   Widget btnStart() {
-    return IconButton(
+    return MaterialButton(
+      padding: EdgeInsets.all(16),
+      shape: CircleBorder(),
+      elevation: 0.0,
       color: Colors.white,
-      //textColor: Color(0xFF0B1220),
-      //onPressed: () => audioCache.play('THYKIER - Shimmer.mp3'),
       onPressed: () {
         if (isPlaying == false) {
           print('tapped');
@@ -68,13 +69,14 @@ class _AudioFileState extends State<AudioFile> {
           });
         }
       },
-      icon: isPlaying == false ? Icon(Icons.play_arrow) : Icon(Icons.pause),
+      child: isPlaying == false ? Icon(Icons.play_arrow,size: 32,color: Colors.black,) : Icon(Icons.pause,size: 32,color: Colors.black,),
     );
   }
 
   Widget btnFast(){
     return IconButton(
-        icon: Icon(Icons.fast_forward,
+      iconSize: 32,
+        icon: Icon(Icons.skip_next,
           color: color,),
         onPressed: (){
           this.widget.advancedPlayer.setPlaybackRate(playbackRate: 1.5);
@@ -125,8 +127,10 @@ class _AudioFileState extends State<AudioFile> {
   }
   Widget btnSlow(){
     return IconButton(
-        icon: Icon(Icons.fast_rewind,
-          color: color,),
+      iconSize: 32,
+        icon: Icon(Icons.skip_previous,
+          color: color,
+        ),
       onPressed: (){
         this.widget.advancedPlayer.setPlaybackRate(playbackRate: 0.5);
       },
@@ -177,17 +181,19 @@ class _AudioFileState extends State<AudioFile> {
     return Container(
       child: Column(
         children: [
+          slider(),
           Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(_position.toString().split(".")[0], style: TextStyle(fontSize: 16),),
-                  Text(_duration.toString().split(".")[0], style: TextStyle(fontSize: 16),)
+                  Text(_position.toString().split(".")[0], style: TextStyle(fontSize: 16, color: Colors.white),),
+                  Text(_duration.toString().split(".")[0], style: TextStyle(fontSize: 16, color: Colors.white),)
                 ],
               )),
-          slider(),
+          SizedBox(height: 20),
           loadAsset(),
+          SizedBox(height: 40),
         ],
       ),
     );
