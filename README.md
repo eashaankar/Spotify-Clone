@@ -1,7 +1,7 @@
 # Spotify Clone  ![alt text](https://github.com/eashaankar/Spotify-Clone/blob/master/android/app/src/main/res/mipmap-mdpi/ic_launcher.png) 
 
 ## Getting Started
-This project is a Spotify app clone that simulates the interface and functionality of the home page of Spotify. The app fetches all the song data from a predefined JSON file.
+This project is a Spotify app clone that simulates the interface and functionality of the home page of Spotify using Flutter. The app fetches all the song data from a predefined JSON file.
 
 ## :camera:App Snapshots
 <img src="https://github.com/eashaankar/Spotify-Clone/blob/master/Screenshots/Screenshot%201.jpg" width="200" height="400" /> <img src="https://github.com/eashaankar/Spotify-Clone/blob/master/Screenshots/Screenshot%202.jpg" width="200" height="400" />
