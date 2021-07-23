@@ -77,7 +77,7 @@ class _AudioFileState extends State<AudioFile> {
     return IconButton(
       iconSize: 32,
         icon: Icon(Icons.skip_next,
-          color: color,),
+          color: Colors.white,),
         onPressed: (){
           this.widget.advancedPlayer.setPlaybackRate(playbackRate: 1.5);
     },
@@ -119,7 +119,7 @@ class _AudioFileState extends State<AudioFile> {
       onPressed: () {},
       icon: Icon(
         Icons.shuffle,
-        color: color,
+        color: Colors.white,
         /*color: Colors.white.withOpacity(
             0.4),*/ //Theme.of(context).accentColor.withOpacity(0.4),
       ),
@@ -129,7 +129,7 @@ class _AudioFileState extends State<AudioFile> {
     return IconButton(
       iconSize: 32,
         icon: Icon(Icons.skip_previous,
-          color: color,
+          color: Colors.white,
         ),
       onPressed: (){
         this.widget.advancedPlayer.setPlaybackRate(playbackRate: 0.5);

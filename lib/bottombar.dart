@@ -11,7 +11,7 @@ class BottomBar extends StatelessWidget {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home,), label: 'Home',),
           BottomNavigationBarItem(icon: Icon(Icons.search,), label: 'Search',),
-          BottomNavigationBarItem(icon: Icon(Icons.library_books,), label: 'Your Library',),
+          BottomNavigationBarItem(icon: Icon(Icons.library_books,), label: 'My Library',),
         ],
         elevation: 0,
         backgroundColor: Colors.black,

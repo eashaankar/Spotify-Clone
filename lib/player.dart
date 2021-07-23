@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:music_player/audio_file.dart';
 import 'package:we_slide/we_slide.dart';
 
-typedef void OnError(Exception exception);
+//typedef void OnError(Exception exception);
 
 class Player extends StatefulWidget {
 
@@ -35,7 +35,6 @@ class _PlayerState extends State<Player> {
     final cardSize = MediaQuery.of(context).size;
     return Material(
       child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
         child: Stack(
           children: <Widget>[
             Container(
